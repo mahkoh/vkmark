@@ -102,7 +102,8 @@ void ShadingScene::teardown()
     vulkan->device().waitIdle();
 
     submit_semaphore = {};
-    vulkan->device().freeCommandBuffers(vulkan->command_pool(), command_buffers);
+    if (!command_buffers.empty())
+        vulkan->device().freeCommandBuffers(vulkan->command_pool(), command_buffers);
     framebuffers.clear();
     image_views.clear();
     depth_image_view = {};

@@ -85,7 +85,8 @@ void ClearScene::teardown()
     }
     command_buffer_fences.clear();
 
-    vulkan->device().freeCommandBuffers(vulkan->command_pool(), command_buffers);
+    if (!command_buffers.empty())
+        vulkan->device().freeCommandBuffers(vulkan->command_pool(), command_buffers);
 
     Scene::teardown();
 }
