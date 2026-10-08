@@ -39,11 +39,10 @@ public:
     void update() override;
 
 private:
-    void prepare_command_buffer(VulkanImage const& image);
+    void prepare_command_buffer(vk::CommandBuffer, VulkanImage const& image);
 
     VulkanState* vulkan;
     std::vector<vk::CommandBuffer> command_buffers;
-    std::vector<vk::Fence> command_buffer_fences;
     std::vector<ManagedResource<vk::Semaphore>> submit_semaphores;
     vk::ClearColorValue clear_color;
     bool cycle;
